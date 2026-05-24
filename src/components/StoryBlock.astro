@@ -8,12 +8,14 @@ interface Props {
   title?: string;
 }
 const { images, imagesAlt = [], accent = false, reverse = false, eyebrow, title } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const resolvedImages = images.map(src => base + src.replace(/^\//, ''));
 ---
 
 <div class={`sb-wrap${accent ? ' sb-wrap--accent' : ''}`}>
   <section class={`sb${reverse ? ' sb--reverse' : ''}`}>
     <div class="sb__gallery">
-      {images.map((src, i) => (
+      {resolvedImages.map((src, i) => (
         <img src={src} alt={imagesAlt[i] ?? ''} loading="lazy" />
       ))}
     </div>

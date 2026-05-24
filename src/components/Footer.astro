@@ -1,12 +1,13 @@
 ---
 const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL;
 ---
 
 <footer class="site-footer">
   <div class="site-footer__inner">
     <div class="site-footer__brand">
       <div class="site-footer__logo-wrap">
-        <img src="/logo.png" alt="Am Rundling" height="48" />
+        <img src={base + 'logo.png'} alt="Am Rundling" height="48" />
       </div>
       <p class="site-footer__address">
         Wohnprojekt am Rundling<br />
@@ -19,22 +20,22 @@ const year = new Date().getFullYear();
     <div class="site-footer__cols">
       <div class="site-footer__col">
         <div class="site-footer__label">Projekt</div>
-        <a href="/neues">Neues</a>
-        <a href="/gemeinsam">Gemeinsam</a>
-        <a href="/lebenstraum">Lebens(t)raum</a>
-        <a href="/oekologisch">Öko? Logisch</a>
+        <a href={base + 'neues'}>Neues</a>
+        <a href={base + 'gemeinsam'}>Gemeinsam</a>
+        <a href={base + 'lebenstraum'}>Lebens(t)raum</a>
+        <a href={base + 'oekologisch'}>Öko? Logisch</a>
       </div>
       <div class="site-footer__col">
         <div class="site-footer__label">Mehr</div>
-        <a href="/kontakt">Kontakt</a>
-        <a href="/impressum">Impressum</a>
+        <a href={base + 'kontakt'}>Kontakt</a>
+        <a href={base + 'impressum'}>Impressum</a>
       </div>
     </div>
   </div>
 
   <div class="site-footer__bottom">
     <small>© {year} Wohnprojekt am Rundling · Gemeinsam wohnen in Berlin</small>
-    <a href="/impressum" class="site-footer__impressum">Impressum</a>
+    <a href={base + 'impressum'} class="site-footer__impressum">Impressum</a>
   </div>
 </footer>
 

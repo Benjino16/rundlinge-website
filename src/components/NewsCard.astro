@@ -7,29 +7,32 @@ interface Props {
   href?: string;
 }
 const { eyebrow, title, excerpt, image, href } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const resolvedImage = base + image.replace(/^\//, '');
+const resolvedHref = href?.startsWith('/') ? base + href.slice(1) : href;
 ---
 
 <article class="news-card">
-  {href ? (
-    <a href={href} class="news-card__link-wrap" tabindex="-1" aria-hidden="true">
+  {resolvedHref ? (
+    <a href={resolvedHref} class="news-card__link-wrap" tabindex="-1" aria-hidden="true">
       <div class="news-card__media">
-        <img src={image} alt="" loading="lazy" />
+        <img src={resolvedImage} alt="" loading="lazy" />
       </div>
     </a>
   ) : (
     <div class="news-card__link-wrap">
       <div class="news-card__media">
-        <img src={image} alt="" loading="lazy" />
+        <img src={resolvedImage} alt="" loading="lazy" />
       </div>
     </div>
   )}
   <div class="news-card__body">
     {eyebrow && <div class="news-card__eyebrow">{eyebrow}</div>}
     <h3 class="news-card__title">
-      {href ? <a href={href}>{title}</a> : title}
+      {resolvedHref ? <a href={resolvedHref}>{title}</a> : title}
     </h3>
     <p class="news-card__excerpt">{excerpt}</p>
-    {href && <a href={href} class="news-card__read">Weiterlesen <span aria-hidden="true">→</span></a>}
+    {resolvedHref && <a href={resolvedHref} class="news-card__read">Weiterlesen <span aria-hidden="true">→</span></a>}
   </div>
 </article>
 

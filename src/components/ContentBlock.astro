@@ -10,6 +10,9 @@ interface Props {
   cta?: { text: string; href: string };
 }
 const { eyebrow, title, body, image, imageAlt = '', reverse = false, tint = false, cta } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const resolvedImage = base + image.replace(/^\//, '');
+const resolvedCta = cta ? { ...cta, href: base + cta.href.replace(/^\//, '') } : undefined;
 ---
 
 <div class={`cb-wrap${tint ? ' cb-wrap--tint' : ''}`}>
@@ -18,14 +21,14 @@ const { eyebrow, title, body, image, imageAlt = '', reverse = false, tint = fals
       {eyebrow && <div class="cb__eyebrow">{eyebrow}</div>}
       <h2 class="cb__title">{title}</h2>
       <p class="cb__body">{body}</p>
-      {cta && (
-        <a href={cta.href} class="cb__cta">
-          {cta.text} <span aria-hidden="true">→</span>
+      {resolvedCta && (
+        <a href={resolvedCta.href} class="cb__cta">
+          {resolvedCta.text} <span aria-hidden="true">→</span>
         </a>
       )}
     </div>
     <div class="cb__media">
-      <img src={image} alt={imageAlt} loading="lazy" />
+      <img src={resolvedImage} alt={imageAlt} loading="lazy" />
     </div>
   </section>
 </div>

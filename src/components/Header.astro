@@ -4,12 +4,14 @@ interface Props {
 }
 const { currentPath } = Astro.props;
 
+const base = import.meta.env.BASE_URL;
+
 const navItems = [
-  { label: 'Neues',          href: '/neues' },
-  { label: 'Gemeinsam',      href: '/gemeinsam' },
-  { label: 'Lebens(t)raum',  href: '/lebenstraum' },
-  { label: 'Öko? Logisch',   href: '/oekologisch' },
-  { label: 'Kontakt',        href: '/kontakt' },
+  { label: 'Neues',          href: base + 'neues' },
+  { label: 'Gemeinsam',      href: base + 'gemeinsam' },
+  { label: 'Lebens(t)raum',  href: base + 'lebenstraum' },
+  { label: 'Öko? Logisch',   href: base + 'oekologisch' },
+  { label: 'Kontakt',        href: base + 'kontakt' },
 ];
 
 function isActive(href: string): boolean {
@@ -19,8 +21,8 @@ function isActive(href: string): boolean {
 
 <header class="site-header" id="site-header">
   <div class="site-header__inner">
-    <a href="/" class="site-header__logo" aria-label="Am Rundling — Startseite">
-      <img src="/logo.png" alt="Am Rundling" height="54" />
+    <a href={base} class="site-header__logo" aria-label="Am Rundling — Startseite">
+      <img src={base + 'logo.png'} alt="Am Rundling" height="54" />
     </a>
     <nav class="site-header__nav" aria-label="Hauptnavigation">
       {navItems.map(({ label, href }) => (

@@ -1,0 +1,100 @@
+---
+interface Fact {
+  name: string;
+  desc: string;
+}
+interface Props {
+  eyebrow?: string;
+  title: string;
+  items: Fact[];
+}
+const { eyebrow, title, items } = Astro.props;
+---
+
+<section class="facts">
+  <div class="facts__inner">
+    <div class="facts__head">
+      {eyebrow && <div class="facts__eyebrow">{eyebrow}</div>}
+      <h2 class="facts__title">{title}</h2>
+    </div>
+    <div class="facts__grid">
+      {items.map(({ name, desc }) => (
+        <div class="facts__item">
+          <h3 class="facts__name">{name}</h3>
+          <p class="facts__desc">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .facts {
+    background: #6da649;
+    padding: 128px 80px;
+  }
+
+  .facts__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .facts__head {
+    max-width: 760px;
+    margin-bottom: 64px;
+  }
+
+  .facts__eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e8e6c4;
+    margin-bottom: 16px;
+  }
+
+  .facts__title {
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.05;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .facts__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+
+  .facts__item {
+    border-top: 1px solid rgba(255,255,255,0.22);
+    padding-top: 24px;
+  }
+
+  .facts__name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+
+  .facts__desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.88);
+    margin: 0;
+    max-width: 100%;
+  }
+
+  @media (max-width: 840px) {
+    .facts {
+      padding: 64px 16px;
+    }
+    .facts__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

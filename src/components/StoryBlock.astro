@@ -1,0 +1,115 @@
+---
+interface Props {
+  images: string[];
+  imagesAlt?: string[];
+  accent?: boolean;
+  reverse?: boolean;
+  eyebrow?: string;
+  title?: string;
+}
+const { images, imagesAlt = [], accent = false, reverse = false, eyebrow, title } = Astro.props;
+---
+
+<div class={`sb-wrap${accent ? ' sb-wrap--accent' : ''}`}>
+  <section class={`sb${reverse ? ' sb--reverse' : ''}`}>
+    <div class="sb__gallery">
+      {images.map((src, i) => (
+        <img src={src} alt={imagesAlt[i] ?? ''} loading="lazy" />
+      ))}
+    </div>
+    <div class="sb__text">
+      {eyebrow && <div class="sb__eyebrow">{eyebrow}</div>}
+      {title && <h2 class="sb__title">{title}</h2>}
+      <slot />
+    </div>
+  </section>
+</div>
+
+<style>
+  .sb-wrap {
+    background: #fbfaf5;
+  }
+  .sb-wrap--accent {
+    background: #f4f2dc;
+  }
+
+  .sb {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 64px;
+    align-items: start;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 80px 80px;
+  }
+
+  .sb--reverse .sb__gallery { order: 2; }
+  .sb--reverse .sb__text   { order: 1; }
+
+  .sb__gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sb__gallery img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .sb__text {
+    font-size: clamp(16px, 1.6vw, 18px);
+    line-height: 1.65;
+    color: #3d413a;
+  }
+
+  .sb__text :global(p) {
+    margin: 0 0 1.25em;
+  }
+  .sb__text :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .sb__text :global(strong) {
+    font-weight: 700;
+    color: #1f221c;
+  }
+
+  .sb__eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 16px;
+  }
+
+  .sb__title {
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.05;
+    font-weight: 600;
+    color: #1f221c;
+    margin: 0 0 24px;
+    text-wrap: balance;
+  }
+
+  .sb__text :global(h3) {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 600;
+    color: #1f221c;
+    margin: 0 0 20px;
+    line-height: 1.1;
+  }
+
+  @media (max-width: 900px) {
+    .sb {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 64px 16px;
+    }
+    .sb--reverse .sb__gallery { order: 1; }
+    .sb--reverse .sb__text   { order: 2; }
+  }
+</style>

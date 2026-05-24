@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Brand greens */
+  --color-green-50:  #f0f4ea;
+  --color-green-200: #d6e5c7;
+  --color-green-400: #a2c48d;
+  --color-green-600: #6da649;
+  --color-green-700: #4f7e33;
+
+  /* Cream */
+  --color-cream-200: #f4f2dc;
+  --color-cream-400: #e8e6c4;
+
+  /* Ink (warm near-black scale) */
+  --color-ink-100: #e7e8e4;
+  --color-ink-300: #b6b9b3;
+  --color-ink-500: #6b6f66;
+  --color-ink-700: #3d413a;
+  --color-ink-900: #1f221c;
+
+  /* Surfaces */
+  --color-paper:  #fbfaf5;
+  --color-footer: #4a4f48;
+
+  /* Font */
+  --font-sans: "Quicksand", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Shadows and motion as raw CSS properties */
+:root {
+  --shadow-card:  0 1px 2px rgba(31,34,28,0.04), 0 8px 24px rgba(31,34,28,0.06);
+  --shadow-hover: 0 2px 4px rgba(31,34,28,0.06), 0 14px 32px rgba(31,34,28,0.10);
+  --shadow-pop:   0 8px 28px rgba(79,126,51,0.18);
+  --ease:         cubic-bezier(0.32, 0.72, 0.24, 1);
+  --dur-fast:     150ms;
+  --dur-mid:      250ms;
+  --dur-slow:     500ms;
+}
+
+html {
+  font-family: "Quicksand", ui-rounded, system-ui, sans-serif;
+  background: #fbfaf5;
+  color: #1f221c;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: #6da649;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+a:hover {
+  color: #4f7e33;
+}
+
+.section-heading {
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.05;
+  font-weight: 600;
+  color: #1f221c;
+  margin: 0 0 24px;
+  text-wrap: balance;
+}

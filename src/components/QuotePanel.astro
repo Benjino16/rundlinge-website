@@ -1,0 +1,66 @@
+---
+interface Props {
+  quote: string;
+  attribution?: string;
+}
+const { quote, attribution } = Astro.props;
+---
+
+<section class="quote-panel">
+  <div class="quote-panel__inner">
+    <div class="quote-panel__mark" aria-hidden="true">„</div>
+    <blockquote class="quote-panel__text">{quote}</blockquote>
+    {attribution && (
+      <div class="quote-panel__attr">— {attribution}</div>
+    )}
+  </div>
+</section>
+
+<style>
+  .quote-panel {
+    background: #f4f2dc;
+    padding: 120px 80px;
+  }
+
+  .quote-panel__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .quote-panel__mark {
+    font-size: 80px;
+    line-height: 0.8;
+    color: #6da649;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .quote-panel__text {
+    font-size: clamp(22px, 3vw, 34px);
+    line-height: 1.35;
+    font-weight: 500;
+    color: #1f221c;
+    margin: 0 0 32px;
+    max-width: 100%;
+    text-wrap: balance;
+  }
+
+  .quote-panel__attr {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b6f66;
+  }
+
+  @media (max-width: 840px) {
+    .quote-panel {
+      padding: 80px 16px;
+    }
+    .quote-panel__mark {
+      font-size: 64px;
+    }
+  }
+</style>

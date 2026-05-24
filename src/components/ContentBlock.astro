@@ -1,0 +1,113 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  image: string;
+  imageAlt?: string;
+  reverse?: boolean;
+  tint?: boolean;
+  cta?: { text: string; href: string };
+}
+const { eyebrow, title, body, image, imageAlt = '', reverse = false, tint = false, cta } = Astro.props;
+---
+
+<div class={`cb-wrap${tint ? ' cb-wrap--tint' : ''}`}>
+  <section class={`cb${reverse ? ' cb--reverse' : ''}`}>
+    <div class="cb__text">
+      {eyebrow && <div class="cb__eyebrow">{eyebrow}</div>}
+      <h2 class="cb__title">{title}</h2>
+      <p class="cb__body">{body}</p>
+      {cta && (
+        <a href={cta.href} class="cb__cta">
+          {cta.text} <span aria-hidden="true">→</span>
+        </a>
+      )}
+    </div>
+    <div class="cb__media">
+      <img src={image} alt={imageAlt} loading="lazy" />
+    </div>
+  </section>
+</div>
+
+<style>
+  .cb-wrap {
+    background: #fbfaf5;
+  }
+  .cb-wrap--tint {
+    background: #f4f2dc;
+  }
+
+  .cb {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 80px;
+  }
+
+  .cb--reverse .cb__text { order: 2; }
+  .cb--reverse .cb__media { order: 1; }
+
+  .cb__eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 16px;
+  }
+
+  .cb__title {
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.05;
+    font-weight: 600;
+    color: #1f221c;
+    margin: 0 0 24px;
+    text-wrap: balance;
+  }
+
+  .cb__body {
+    font-size: clamp(18px, 2vw, 20px);
+    line-height: 1.55;
+    color: #3d413a;
+    max-width: 52ch;
+    margin: 0 0 32px;
+  }
+
+  .cb__cta {
+    font-size: 15px;
+    font-weight: 600;
+    color: #6da649;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 150ms cubic-bezier(0.32, 0.72, 0.24, 1),
+                color 150ms cubic-bezier(0.32, 0.72, 0.24, 1);
+  }
+  .cb__cta:hover {
+    color: #4f7e33;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .cb__media img {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 840px) {
+    .cb {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 50px 16px;
+    }
+    .cb--reverse .cb__text { order: unset; }
+    .cb--reverse .cb__media { order: unset; }
+  }
+</style>

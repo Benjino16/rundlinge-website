@@ -1,0 +1,125 @@
+---
+import Site from '../layouts/Site.astro';
+---
+
+<Site
+  title="Impressum"
+  description="Impressum des Wohnprojekts am Rundling, Berlin-Johannisthal."
+>
+  <section class="impressum">
+    <div class="impressum__inner">
+
+      <header class="impressum__header">
+        <div class="impressum__eyebrow">Rechtliches</div>
+        <h1 class="impressum__title">Impressum</h1>
+      </header>
+
+      <div class="impressum__block">
+        <div class="impressum__label">Angaben gemäß § 5 TMG</div>
+        <address>
+          Holger Tautorat<br />
+          WEG am Rundling<br />
+          Am Rundling 1–20<br />
+          12487 Berlin<br />
+          Deutschland
+        </address>
+      </div>
+
+      <div class="impressum__block">
+        <div class="impressum__label">Kontakt</div>
+        <p>E-Mail: <a href="mailto:info@rundlinge.de">info@rundlinge.de</a></p>
+      </div>
+
+      <div class="impressum__block">
+        <div class="impressum__label">Verantwortlich für den Inhalt</div>
+        <p>Julia Kathöfer<br />Am Rundling 1–20, 12487 Berlin</p>
+      </div>
+
+      <div class="impressum__block">
+        <div class="impressum__label">Haftungsausschluss</div>
+        <p>
+          Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt.
+          Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können
+          wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß
+          § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen
+          Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als
+          Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte
+          fremde Informationen zu überwachen oder nach Umständen zu forschen, die
+          auf eine rechtswidrige Tätigkeit hinweisen.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</Site>
+
+<style>
+  .impressum {
+    background: #fbfaf5;
+    padding: 96px 80px;
+  }
+  .impressum__inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .impressum__header {
+    padding-bottom: 48px;
+  }
+  .impressum__eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 16px;
+  }
+  .impressum__title {
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1.05;
+    font-weight: 600;
+    color: #1f221c;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .impressum__block {
+    border-top: 1px solid #e7e8e4;
+    padding-top: 24px;
+  }
+  .impressum__label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 14px;
+  }
+  address {
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #3d413a;
+  }
+  .impressum__block p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3d413a;
+    margin: 0;
+  }
+  .impressum__block a {
+    color: #6da649;
+    text-decoration: none;
+    border-bottom: 1px solid #6da649;
+    padding-bottom: 1px;
+    transition: color 150ms, border-color 150ms;
+  }
+  .impressum__block a:hover {
+    color: #4f7e33;
+    border-color: #4f7e33;
+  }
+  @media (max-width: 840px) {
+    .impressum { padding: 64px 16px; }
+  }
+</style>

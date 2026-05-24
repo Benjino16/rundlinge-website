@@ -1,0 +1,155 @@
+---
+import Site from '../layouts/Site.astro';
+import Hero from '../components/Hero.astro';
+import Collage from '../components/Collage.astro';
+import ContentBlock from '../components/ContentBlock.astro';
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import StoryBlock from "../components/StoryBlock.astro";
+
+let collageImages: string[] = [];
+try {
+  collageImages = readdirSync(join(process.cwd(), 'public/images/gemeinsam/collage'))
+    .filter(f => /\.(jpe?g|png|webp)$/i.test(f))
+    .sort()
+    .map(f => `/images/gemeinsam/collage/${f}`);
+} catch {}
+
+const laengstSchonGross = 'Der typisch städtischen und altersbedingten Vereinsamung wollen wir ein Modell entgegensetzen, das den Bedürfnissen nach Individualität und Dazugehörigkeit Rechnung trägt. Die Bewohner beschreiben, wie Kinder früh vielfältige Erfahrungen außerhalb der Familie machen können. Inzwischen sind viele ursprüngliche Bewohner über 60 Jahre alt, wobei noch 12 Jugendliche im Projekt leben. Das generationenübergreifende Zusammenleben schafft Vielfalt und neue Herausforderungen.';
+
+const begegnungsorte = 'Die gemischte Gruppe bringt unterschiedliche Kompetenzen mit, löst aber auch Konflikte aus. Das Ziel besteht darin, Orte zu schaffen, die den Wunsch „anders zu leben" möglich machen. Verschiedene Altersgruppen haben unterschiedliche Bedürfnisse, die durch Kompromisse gelöst werden.';
+
+const features = [
+  {
+    name: 'Gemeinschaftshaus',
+    desc: 'Ein 80-Quadratmeter-Raum für Veranstaltungen, Yoga, Tischtennis und die Foodcoop-Organisation.',
+  },
+  {
+    name: 'Food-Coop',
+    desc: 'In Selbstinitiative mit viel Eigenleistung organisieren wir den Kauf ökologischer Lebensmittel. Dies entstand, weil kein Bioladen im Stadtteil existiert.',
+  },
+  {
+    name: 'Werkstatt',
+    desc: 'Ein 20-Quadratmeter-Raum für Fahrradreparaturen und Hobbyarbeiten.',
+  },
+  {
+    name: 'Mobilitätskonzept',
+    desc: 'Die autoarme Siedlung praktiziert privates Carsharing zwischen Bewohnern.',
+  },
+  {
+    name: 'Wasserspielplatz',
+    desc: 'Ein aus Recyclingmaterialien erstellter Spielplatz für Kinder mit Wasserlauf-Gestaltung und Kneippbecken für ältere Bewohner.',
+  },
+  {
+    name: 'Piazza',
+    desc: 'Zentraler Platz für Fußball und Festveranstaltungen.',
+  },
+];
+---
+
+<Site
+  title="Gemeinsam"
+  description="Wie wir zusammen leben — Begegnungsorte, Gemeinschaftshaus, Foodcoop und Nachbarschaft am Rundling."
+>
+  <Hero
+    eyebrow="Mehrgenerationenwohnen"
+    title="Gemeinsam"
+    image="/images/gemeinsam/header.jpg"
+  />
+
+  <ContentBlock
+    eyebrow="Generationen unter einem Dach."
+    title="Längst schon groß"
+    body={laengstSchonGross}
+    image="/images/gemeinsam/laengst_schon_gross.jpg"
+  />
+
+  <ContentBlock
+    eyebrow="Begegnungsorte"
+    title="Orte, die anders leben möglich machen."
+    body={begegnungsorte}
+    image="/images/gemeinsam/begegnungsorte.jpg"
+    reverse={true}
+  />
+
+
+  <StoryBlock
+      images={[
+        '/images/gemeinsam/gh_1.jpg',
+        '/images/gemeinsam/gh_2.jpg',
+      ]}
+      imagesAlt={[
+        'Luftaufnahme Baustelle Rundling',
+        'Architekturmodell des Rundlings',
+      ]}
+      accent={true}
+      eyebrow="Gemeinschaftshaus"
+      title="Unser Herzstück"
+  >
+    <p>Unser 80 qm großes Gemeinschaftshaus ist das erste Strohballenhaus Berlins. Nach langer Planungszeit, die von uns allen Rundlingen viele Kompromisse erforderte, begannen wir 2009 mit dem Bau unseres Herzstückes. Unter Anleitung der Architektin Friederike Fuchs erstellten wir auch dieses Bauvorhaben zu einem Großteil aus Eigenleistung, wobei das Einfügen der klassischen Strohballen zwischen das Holzständerwerk noch zu den einfachsten Tätigkeiten gehörte.</p>
+    <p>Das Haus besteht vor allem aus einen Multifunktionsraum für Veranstaltungen und zwanglose Begegnungen in Küche und (baldiger) Kaminecke. In diesem Raum finden Feiern und unser Plenum statt, es wird Yoga gemacht und Tischtennis gespielt und er beherbergt unsere Foodcoop.</p>
+    <p>Inzwischen gibt es im Gemeinschaftshaus auch eine funktionierende Werkstatt, ein Badezimmer und eine Basarecke, in der wir materielle Gegenstände austauschen bzw. spenden. In einem angeschlossen Lagerraum ist Platz für Holz und gemeinsame Gartengeräte.</p>
+  </StoryBlock>
+
+  <section class="gemeinsam-features">
+    <div class="gemeinsam-features__inner">
+      <div class="features-eyebrow">Weitere Begegnungsorte</div>
+      <h2 class="section-heading">Was uns verbindet</h2>
+      <div class="features-grid">
+        {features.map(({ name, desc }) => (
+          <div class="feature-item">
+            <h3>{name}</h3>
+            <p>{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <Collage images={collageImages} label="Mehr Einblicke" />
+</Site>
+
+<style>
+  .gemeinsam-features {
+    background: #f4f2dc;
+    padding: 30px 80px;
+  }
+  .gemeinsam-features__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .features-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 16px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 48px;
+  }
+  .feature-item {
+    border-top: 1px solid #b6b9b3;
+    padding-top: 20px;
+  }
+  .feature-item h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f221c;
+    margin: 0 0 10px;
+  }
+  .feature-item p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #3d413a;
+    margin: 0;
+  }
+  @media (max-width: 840px) {
+    .gemeinsam-features { padding: 64px 16px; }
+    .features-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>

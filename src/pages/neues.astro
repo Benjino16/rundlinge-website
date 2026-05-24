@@ -1,0 +1,101 @@
+---
+import Site from '../layouts/Site.astro';
+import Hero from '../components/Hero.astro';
+import NewsCard from '../components/NewsCard.astro';
+
+const saunaText = 'Wir haben es geschafft, den Platz in unserer Mitte um einen neuen Begegnungsort zu erweitern: unsere Sauna! Das Projekt umfasst zudem eine geplante offene Sommerküche, die als Ort für alltägliche Treffen und Feste dienen soll.';
+
+const energieText = 'Die aktuelle Initiative beinhaltet dezentralisierte Warmwasserwärmepumpen, erweiterte Photovoltaikanlage, Speicher sowie eine neue Grauwasseranlage.';
+
+const leuchtetText = 'Seit 2019 ist das Beleuchtungskonzept abgeschlossen mit Fokus auf Insektenschutz. Wichtig war uns auch den Insekten zuliebe die Lichtverschmutzung minimal zu halten. Seit 2017 werden mehrere Bienenvölker gepflegt, mit lokalem Honig als Ertrag.';
+
+const herzstueckText = 'Das 80-Quadratmeter-Gebäude ist das erste Strohballenhaus Berlins. Erbaut 2009 mit vielen Eigenleistungen, bietet es Multifunktionsraum, Werkstatt, Bad, Basarecke und Lagerbereich für gemeinschaftliche Aktivitäten.';
+---
+
+<Site
+  title="Neues"
+  description="Aktuelle Nachrichten vom Wohnprojekt am Rundling — was wir bauen, was summt, leuchtet oder duftet."
+>
+  <Hero
+    eyebrow="Neues · 26"
+    title="Neues vom Rundling"
+    image="/images/neues-hero.jpg"
+  />
+
+  <section class="page-intro">
+    <div class="page-intro__inner">
+      <p class="page-intro__text">
+        Nach 20 Jahren haben wir das Meiste schon geschafft, aber ab und an verwirklichen wir noch neue Begegnungsorte.
+      </p>
+    </div>
+  </section>
+
+  {/*TODO: Eventuell texte erweiterbar machen, mit einem Modal*/}
+  <section class="news-grid-section">
+    <div class="news-grid">
+      <NewsCard
+          eyebrow="Energiekonzept · 2026"
+          title="Wärme, Strom, Wasser — neu gedacht"
+          excerpt={energieText}
+          image="/images/herzstueck-bau.jpg"
+          href="/oekologisch"
+      />
+      <NewsCard
+        eyebrow="Bau der Sauna · 2023"
+        title="Sauna und (Sommerküche)"
+        excerpt={saunaText}
+        image="/images/sauna-sommerkueche.jpg"
+        href="/gemeinsam"
+      />
+      <NewsCard
+        eyebrow="Insektenfreundlich · 2017"
+        title="Es leuchtet und summt"
+        excerpt={leuchtetText}
+        image="/images/bienen.jpg"
+      />
+      <NewsCard
+        eyebrow="Gemeinschaftshaus · 2009"
+        title="Unser Herzstück"
+        excerpt={herzstueckText}
+        image="/images/herzstueck.jpg"
+        href="/gemeinsam"
+      />
+    </div>
+  </section>
+</Site>
+
+<style>
+  .page-intro {
+    background: #f4f2dc;
+    padding: 64px 80px;
+  }
+  .page-intro__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .page-intro__text {
+    font-size: clamp(20px, 2.5vw, 26px);
+    line-height: 1.55;
+    color: #3d413a;
+    max-width: 64ch;
+    margin: 0;
+  }
+
+  .news-grid-section {
+    background: #fbfaf5;
+    padding: 80px;
+  }
+  .news-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  @media (max-width: 840px) {
+    .page-intro { padding: 48px 16px; }
+    .news-grid-section { padding: 48px 16px; }
+    .news-grid { grid-template-columns: 1fr; }
+  }
+</style>

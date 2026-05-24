@@ -1,0 +1,148 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <div class="site-footer__logo-wrap">
+        <img src="/logo.png" alt="Am Rundling" height="48" />
+      </div>
+      <p class="site-footer__address">
+        Wohnprojekt am Rundling<br />
+        Am Rundling 1–20<br />
+        12487 Berlin-Johannisthal<br />
+        <a href="mailto:info@rundlinge.de">info@rundlinge.de</a>
+      </p>
+    </div>
+
+    <div class="site-footer__cols">
+      <div class="site-footer__col">
+        <div class="site-footer__label">Projekt</div>
+        <a href="/neues">Neues</a>
+        <a href="/gemeinsam">Gemeinsam</a>
+        <a href="/lebenstraum">Lebens(t)raum</a>
+        <a href="/oekologisch">Öko? Logisch</a>
+      </div>
+      <div class="site-footer__col">
+        <div class="site-footer__label">Mehr</div>
+        <a href="/kontakt">Kontakt</a>
+        <a href="/impressum">Impressum</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <small>© {year} Wohnprojekt am Rundling · Gemeinsam wohnen in Berlin</small>
+    <a href="/impressum" class="site-footer__impressum">Impressum</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #4a4f48;
+    color: #fff;
+    padding: 104px 80px 80px;
+  }
+
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .site-footer__logo-wrap {
+    background: #f4f2dc;
+    display: inline-flex;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+  }
+  .site-footer__logo-wrap img {
+    height: 40px;
+    width: auto;
+  }
+
+  .site-footer__address {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    max-width: 100%;
+  }
+  .site-footer__address a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .site-footer__address a:hover {
+    color: #fff;
+  }
+
+  .site-footer__cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .site-footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .site-footer__label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e8e6c4;
+    margin-bottom: 4px;
+  }
+
+  .site-footer__col a {
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 150ms;
+  }
+  .site-footer__col a:hover {
+    color: #e8e6c4;
+    text-decoration: none;
+  }
+
+  .site-footer__bottom {
+    max-width: 1280px;
+    margin: 64px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  .site-footer__bottom small {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+  }
+  .site-footer__impressum {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 150ms;
+  }
+  .site-footer__impressum:hover {
+    color: rgba(255,255,255,0.85);
+  }
+
+  @media (max-width: 840px) {
+    .site-footer {
+      padding: 64px 16px 48px;
+    }
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+</style>

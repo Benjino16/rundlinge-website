@@ -1,0 +1,81 @@
+---
+import Site from '../layouts/Site.astro';
+import Hero from '../components/Hero.astro';
+import ContentBlock from '../components/ContentBlock.astro';
+import QuotePanel from '../components/QuotePanel.astro';
+import FactsPanel from '../components/FactsPanel.astro';
+import FilmBlock from '../components/FilmBlock.astro';
+
+const derRundling = 'Im Südosten Berlins wurde 2006 unter dem Namen "Lebens(t)raum-Johannisthal" von 70 kleinen und großen Menschen ein ökologisches Wohnprojekt errichtet: 20 Häuser mit 22 Wohneinheiten, gebaut mit viel Eigenleistung und in Anlehnung an alte Rundlings-Dorfstrukturen im Wendland.';
+
+const jungTrittAlt = 'Ein funktionierendes Gemeinschaftsleben ohne auf Privatsphäre verzichten zu müssen: Die nachbarschaftliche Nähe macht vielfältige soziale Beziehungen unkompliziert und spontan möglich. Mal sind Kinder zu betreuen, mal isst einer krankheitshalber die Suppe vom Nachbarn mit, mal wird für einen größeren Transport ein Auto ausgeliehen.';
+
+const pioniersarbeit = 'Der „Lebens(t)raum" des Architekten Harald Zenke: Um eine Art Dorfmitte mit Gemeinschaftshaus sollte sich eine ökologische Reihenhaussiedlung gruppieren. Aus einem Projekt mit Experimentcharakter wurde dank vieler Mitstreiter Realität.';
+
+const strohballenhaus = 'Unser 80 qm großes Gemeinschaftshaus ist aus Strohballen gebaut. Hier begegnen wir uns zwanglos in Küche und Werkstatt, bei Feiern und sportlichen Aktivitäten wie Tischtennis und Yoga und verteilen die Lebensmittel unserer Foodcoop.';
+
+const facts = [
+  { name: 'Multifunktionsraum', desc: 'Hier finden Feiern und unser Plenum statt, es wird Yoga gemacht und Tischtennis gespielt.' },
+  { name: 'Foodcoop', desc: 'Wir organisieren in Selbstinitiative den Kauf ökologischer Lebensmittel — gemeinsam, ohne Umweg.' },
+  { name: 'Werkstatt', desc: 'Angeschlossen ans Gemeinschaftshaus: ca. 20 qm zum Reparieren, Schreinern, Hobbies nachgehen.' },
+  { name: 'Mobilitätskonzept', desc: 'Autos bleiben außen vor. Wir betreiben privat untereinander Carsharing.' },
+  { name: 'Wasserspielplatz', desc: 'Aus Recyclingmaterialien — Kinder gestalten mit Holz, Lehm und Sand den Wasserlauf.' },
+  { name: 'Piazza', desc: 'Die unbebaute Mitte: mal Fußballplatz, mal große Tanzfläche bei unseren Festen.' },
+];
+---
+
+<Site title="Gemeinsam wohnen in Berlin">
+  <Hero
+    eyebrow="Wohnprojekt · seit 2006"
+    title={"Gemeinsam<br/>wohnen in Berlin"}
+    image="/images/hero-rundlinge.jpg"
+  />
+
+  <ContentBlock
+    eyebrow="20 Häuser. 22 Wohneinheiten. Eine Dorfmitte."
+    title="Der Rundling"
+    body={derRundling}
+    image="/images/aerial-rundling.png"
+    cta={{ text: 'Mehr lesen', href: '/lebenstraum' }}
+  />
+
+  <ContentBlock
+    eyebrow="Nachbarschaftliche Nähe, ganz unkompliziert."
+    title="Jung trifft alt…"
+    body={jungTrittAlt}
+    image="/images/jung-trifft-alt.jpg"
+    reverse={true}
+    cta={{ text: 'Unsere Gemeinschaft', href: '/gemeinsam' }}
+  />
+
+
+  <QuotePanel
+    quote="Eine Gemeinschaft, die kein gemeinsames Anliegen verfolgt, bleibt ein zusammengewürfelter Haufen."
+    attribution="Gerald Hüther"
+  />
+
+  <ContentBlock
+      eyebrow="Aus einem Experiment wird Realtiät"
+      title={'Das erste Strohballenhaus Berlins'}
+      body={strohballenhaus}
+      image="/images/strohballenhaus.jpg"
+      reverse={false}
+      cta={{ text: 'Wie es begann', href: '/lebenstraum' }}
+  />
+  <ContentBlock
+    eyebrow="Aus einem Experiment wird Realtiät"
+    title={'Pioniersarbeit'}
+    body={pioniersarbeit}
+    image="/images/pioniersarbeit.jpg"
+    reverse={true}
+    cta={{ text: 'Wie es begann', href: '/lebenstraum' }}
+  />
+
+  <FilmBlock
+    src="https://www.ardmediathek.de/embed/Y3JpZDovL3BsYW5ldC1zY2h1bGUuZGUvQVJEXzEwMzMyX3ZpZGVv?"
+    title="Ein Dorf in Berlin."
+    lede="Eine 15-minütige Reportage des SWR über das Leben am Rundling — die Häuser, die Bewohner, die Idee dahinter."
+    meta="Produktion: SWR · Sendelänge: 15 Minuten"
+    allow="clipboard-read; clipboard-write"
+  />
+</Site>

@@ -1,0 +1,168 @@
+---
+import Site from '../layouts/Site.astro';
+import Hero from '../components/Hero.astro';
+import Collage from '../components/Collage.astro';
+import ContentBlock from '../components/ContentBlock.astro';
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import FactsPanel from "../components/FactsPanel.astro";
+
+let collageImages: string[] = [];
+try {
+  collageImages = readdirSync(join(process.cwd(), 'public/images/oekologisch/collage'))
+    .filter(f => /\.(jpe?g|png|webp)$/i.test(f))
+    .sort()
+    .map(f => `/images/oekologisch/collage/${f}`);
+} catch {}
+
+const oekoLogisch = 'Konsens unter allen Mitstreitern war immer, dass wir sowohl bei der Architektur als auch in der Bewirtschaftung ein ökologisch verträgliches Konzept wollen. Aufgrund unserer Geldbeutel waren wir gelegentlich zu Kompromissen gezwungen, aber unseren Ausgangspunkt verloren wir niemals aus den Augen: Hohe Wärmedämmung zur Reduzierung des Energiebedarfs, Verwendung von nachwachsenden Rohstoffen bei Bau- und Heizmaterial, ökologische Baustoffe wie Holz, Lehmputz bzw. -mauerwerk und Platten aus gepresstem Stroh, Isolierschicht aus Zellulose und Hanf. Aus ökologischen Erwägungen entschieden wir uns auch für den Einsatz einer Holzpelletheizung mit Unterstützung von Solarkollektoren und eine Grauwasseranlage, um genutztes Trinkwasser für die Toilettenspülung wiederverwenden zu können.';
+
+const kannDasWeg = 'Auch nach dem Bau der Häuser gibt es viel Kreativität beim Thema "Aus alt mach neu": Aus den abgeschraubten Steghölzern im nahegelegenen Landschaftspark wurde der Boden unseres Gemeinschaftshauses, mit altem Kopfsteinpflaster vom Ostbahnhof wurden unsere Wege eingefasst und die gemeinsame Terrasse gebaut, mit alten Fliesen der Wasserspielplatz aufgehübscht und aus Robinienhölzern die Außenbeleuchtung aufgestellt. Garten- und Küchengeräte, Autos oder Kinderkleidung: Materielles lässt sich in der Gemeinschaft gut teilen.';
+
+const innovation = 'Aus insgesamt 23 anspruchsvollen Vorhaben wählte die Jury der Berliner Energietage / IHK aus dem Kreis der Klima-SchutzPartner Berlin drei Sieger aus. Preisträger in der Kategorie für erfolgreiche Projekte ist mit ihrem ökologischen Wohnprojekt die Lebens(t)raum Johannisthal GbR. Überzeugt haben die Jury neben dem Vorbildcharakter der klimaschonenden Maßnahmen vor allem der intelligente Mix verschiedener energiesparender Techniken und baulicher Maßnahmen.';
+
+const klimaItems = [
+  '45.000 kg CO₂ durch Heizkesseltechnik',
+  '9.000 kg CO₂ durch Solarkollektoren',
+  '12.000 kg CO₂ durch Photovoltaik',
+  '3.600 m³ Trinkwasser durch Grauwasseranlage',
+];
+---
+
+<Site
+  title="Öko? Logisch"
+  description="Ökologisches Bauen und Leben am Rundling — Strohballen, Holzpellets, Photovoltaik und Grauwasseranlage."
+>
+  <Hero
+    eyebrow="Nachhaltigkeit · seit 2006"
+    title={"Öko?<br/>Logisch."}
+    image="/images/oekologisch/header.jpg"
+  />
+
+  <ContentBlock
+    eyebrow="Öko? Logisch!"
+    title="Holz, Hanf, Lehm"
+    body={oekoLogisch}
+    image="/images/oekologisch/oeko-logisch.jpg"
+  />
+
+  <ContentBlock
+    eyebrow="Kann das weg?"
+    title="Aus alt wird neu"
+    body={kannDasWeg}
+    image="/images/oekologisch/kann_das_weg.jpg"
+    reverse={true}
+    tint={true}
+  />
+
+
+  <ContentBlock
+      eyebrow="Neues Energiekonzept"
+      title="Speicher und PV"
+      body={innovation}
+      image="/images/herzstueck-bau.jpg"
+      reverse={false}
+  />
+
+
+  <section class="klima-panel">
+    <div class="klima-panel__inner">
+      <div class="klima-header">
+        <div>
+          <div class="klima-eyebrow">Klimaschutzpartner Berlin</div>
+          <h2 class="klima-title">Jährliche Einsparungen.</h2>
+        </div>
+      </div>
+      <div class="klima-grid">
+        {klimaItems.map(item => (
+          <div class="klima-item">
+            <p>{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Collage images={collageImages} label="Mehr Einblicke" />
+</Site>
+
+<style>
+  .oeko-innovation {
+    background: #fbfaf5;
+    padding: 80px;
+  }
+  .oeko-innovation__inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .oeko-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 16px;
+  }
+  .oeko-body {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #3d413a;
+    margin: 0;
+  }
+  .klima-panel {
+    background: #6da649;
+    padding: 96px 80px;
+  }
+  .klima-panel__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .klima-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+  .klima-logo img {
+    height: 72px;
+    width: auto;
+    background: #fff;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  .klima-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e8e6c4;
+    margin-bottom: 12px;
+  }
+  .klima-title {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+  }
+  .klima-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .klima-item {
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 20px;
+  }
+  .klima-item p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    margin: 0;
+  }
+  @media (max-width: 840px) {
+    .oeko-innovation { padding: 48px 16px; }
+    .klima-panel { padding: 64px 16px; }
+    .klima-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .klima-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+</style>

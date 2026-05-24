@@ -1,0 +1,133 @@
+---
+import Site from '../layouts/Site.astro';
+import Hero from '../components/Hero.astro';
+import Collage from '../components/Collage.astro';
+import QuotePanel from '../components/QuotePanel.astro';
+import ContentBlock from '../components/ContentBlock.astro';
+import StoryBlock from '../components/StoryBlock.astro';
+import FilmBlock from '../components/FilmBlock.astro';
+import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
+
+let collageImages: string[] = [];
+try {
+  collageImages = readdirSync(join(process.cwd(), 'public/images/lebenstraum/collage'))
+    .filter(f => /\.(jpe?g|png|webp)$/i.test(f))
+    .sort()
+    .map(f => `/images/lebenstraum/collage/${f}`);
+} catch {}
+---
+
+<Site
+  title="Lebens(t)raum"
+  description="Die Geschichte des Wohnprojekts am Rundling — wie der Lebens(t)raum eines Architekten zur Wirklichkeit wurde."
+>
+  <Hero
+    eyebrow="Geschichte · seit 2003"
+    title="Lebens(t)raum"
+    image="/images/lebenstraum/header.jpg"
+  />
+
+  <StoryBlock
+      images={[
+        '/images/lebenstraum/wie_alles_begann.jpg',
+        '/images/gemeinsam/gh_2.jpg',
+      ]}
+      imagesAlt={[
+        'Luftaufnahme Baustelle Rundling',
+        'Architekturmodell des Rundlings',
+      ]}
+      accent={false}
+      eyebrow="Lebenstraum Johannisthal"
+      title="Wie alles begann"
+      reverse={true}
+  >
+    <p>Erst war da der „Lebens(t)raum“ des Architekten Harald Zenke: Häuser für Jung und Alt, gemeinschaftlich geplant, gebaut und vor allem bewohnt, ein Projekt mit Experimentcharakter! Um eine Art Dorfmitte mit Gemeinschaftshaus sollte sich eine ökologische Reihenhaussiedlung gruppieren, optimale Bedingungen für gegenseitige Bereicherung und Hilfe bietend. Er erarbeitete ein erstes, offenes Konzept, fand Mitstreiter und ein geeignetes Grundstück in Berlin-Johannisthal, direkt neben dem Landschaftspark und mit äußerst liebenswerten Nachbarn: den Schafen. Das Land Berlin, vertreten durch die Adlershofer Aufbaugesellschaft, förderte an dieser Stelle explizit gemeinschaftliches und ökologisches Bauen.</p>
+  </StoryBlock>
+
+
+  {/*TODO: Graue Karte*/}
+  <ContentBlock
+    eyebrow="Harald Zenke · Gründer und Architekt"
+    title="Eine Idee, die bleibt."
+    body="Harald Zenke, Architekt und Bauleiter des Rundlings, wurde - erst 58jährig - im Jahre 2018 aus dem Leben gerissen. Alle Rundlingsbewohner werden immer in großer Dankbarkeit an ihn denken. \n Er hatte den Mut, seiner Idee Gestalt zu geben, die wir weiter und weiter mit Leben füllen können."
+    image="/images/lebenstraum/harald_zenke_trauer.jpg"
+    reverse={true}
+    tint={true}
+  />
+
+  <StoryBlock
+    images={[
+      '/images/lebenstraum/geschichte_0.jpg',
+      '/images/lebenstraum/geschichte_1.jpg',
+      '/images/lebenstraum/geschichte_2.jpg',
+      '/images/lebenstraum/geschichte_3.jpg',
+      '/images/lebenstraum/geschichte_4.jpg',
+      '/images/lebenstraum/geschichte_5.jpg',
+
+    ]}
+    imagesAlt={[
+      'Leere Baufläche mit kleinem Schild',
+      'Luftaufnahme Baustelle Rundling',
+      'Architekturmodell des Rundlings',
+      'Rohbau von oben',
+      'Schild: Baugemeinschaft LebensTraum Johannisthal',
+      'Kuchen mit "Rundlinge"',
+    ]}
+    accent={false}
+    eyebrow="Eine kleine Chronologie"
+    title="Von der Idee zur GBR zur WEG"
+  >
+    <p>Ab Januar 2003 gab es regelmäßige Treffen in der Privatwohnung Zenkes, in denen gearbeitet, geplant und geträumt wurde. Das Projekt brauchte, um realisiert werden zu können, weitere „Lebensträumer“ und also machte man sich an die Akquise. Per Inserat, mittels Ständen auf diversen Veranstaltungen und natürlich über Mundpropaganda im Bekanntenkreis wurde unermüdlich geworben. Im Winter 2003 waren immerhin so viele Teilnehmer gefunden, dass der nächste große Schritt getan werden konnte: die <strong>Gründung der Planungs-GbR.</strong></p>
+    <p>Es ging nun Schlag auf Schlag –  noch im ausgehenden Jahr 2003 wurde der <strong>Bauantrag</strong> eingereicht! Das Architekturbüro, zu dem Zenke gehörte, entwarf für die zukünftigen Bewohner (und mit ihnen) die individuellen Häuser.  Daraus wurde der erste Bauabschnitt, dem noch zwei weitere folgen sollten. In Workshops machten sich die „Häuslebauer“ parallel zur Bauplanung immer wieder auch Gedanken über das künftige Zusammenleben. Das Projekt bekam Flügel, wurde reicher an Ideen, Träumen, Fähigkeiten, natürlich auch an Konflikten. Ein Projektsteuerer wurde berufen, um bei der Organisation zu helfen.</p>
+    <p>Im Herbst 2004 traf endlich die ersehnte <strong>Baugenehmigung</strong> ein. Es war so weit – man konnte zur Grundsteinlegung schreiten. Aus dem Traum wurde Wirklichkeit, das Grundstück Baustelle. Der Versorgungskeller wurde ausgehoben, für die anderen Häuser die Fundamente gegossen. Nachdem der beauftragte Zimmereibetrieb die Holzständer gesetzt hatte, wuchs beständig der Rohbau, unter Einbeziehung von sehr viel Eigenleistung. Silvester 2004 feierte die Baugruppe bereits gemeinsam in einem der Häuser. Die Bauzeit wurde von allen Teilnehmern ausgesprochen intensiv erlebt: Wann immer man konnte, war man vor Ort, um nach seinen Kräften und Fähigkeiten zu helfen. Die Rohbauten wurden sofort für die Logistik genutzt: ein Haus diente als Lagerraum, eines als Werkstatt, ein anderes als Kantine.</p>
+    <p>Im Laufe des Jahres 2005 bezogen alle Bewohner des ersten Bauabschnitts ihre Häuser – die letzten Bewohner des dritten Bauabschnitts Anfang 2007. Die GbR wurde zu einer <strong>WEG (Wohnungseigentümergemeinschaft)</strong> umgewandelt. Ein bisschen kamen wir nun zur Ruhe, aber nach dem Abenteuer des Bauens musste zunehmend (und muss noch immer) Energie in das einerseits wunderschöne und andererseits anstrengende Abenteuer des Miteinanderlebens gesteckt werden.</p>
+  </StoryBlock>
+  <FilmBlock
+    src="https://player.vimeo.com/video/32446066?h=ff412768c5"
+    iframeTitle="Lebens(t)raum Johannisthal"
+    title="Lebens(t)raum Johannisthal"
+    lede={'Gewinner des Wettbewerbs "Wohnen in der Zukunft" der IKEA Stiftung.'}
+    meta="Produktion: Heinzelfilm · Sendelänge: 7 Minuten"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+    aspectRatio="640 / 512"
+  />
+  <Collage images={collageImages} label="Einblicke in den Bau" />
+</Site>
+
+<style>
+  .lt-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 48px;
+  }
+  .lt-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .lt-item {
+    border-top: 2px solid #6da649;
+    padding-top: 20px;
+  }
+  .lt-item__year {
+    font-size: 22px;
+    font-weight: 700;
+    color: #6da649;
+    margin-bottom: 12px;
+  }
+  .lt-item p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #3d413a;
+    margin: 0;
+  }
+  @media (max-width: 840px) {
+    .lt-timeline { padding: 64px 16px; }
+    .lt-items { grid-template-columns: 1fr 1fr; gap: 24px; }
+  }
+</style>

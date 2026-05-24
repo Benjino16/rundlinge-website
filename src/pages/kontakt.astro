@@ -1,0 +1,141 @@
+---
+import Site from '../layouts/Site.astro';
+import Hero from '../components/Hero.astro';
+
+const einleitungText = 'Wir haben keinen freien Wohnraum, weder zum Kauf noch zur Miete, aber wir sind offen für alle Fragen rund um die Themen Bau, Technik und Sozialstrukturen in unserem Wohnprojekt.';
+
+const angebotText = 'Das Projekt bietet Führungen durch Freiwillige an und möchte Erfahrungen weitergeben sowie neue Wohnprojekte unterstützen.';
+---
+
+<Site
+  title="Kontakt"
+  description="Kontakt zum Wohnprojekt am Rundling — Fragen zu Bau, Technik und Sozialstrukturen."
+>
+  <Hero
+    eyebrow="Kontakt"
+    title="Schreiben Sie uns"
+    image="/images/kontakt/header.jpg"
+  />
+
+  <section class="kontakt-main">
+    <div class="kontakt-main__inner">
+      <div class="kontakt-content">
+        <p class="kontakt-intro">{einleitungText}</p>
+        <p class="kontakt-angebot">{angebotText}</p>
+        <a href="mailto:info@rundlinge.de" class="kontakt-cta">
+          info@rundlinge.de
+          <span aria-hidden="true"> →</span>
+        </a>
+      </div>
+
+      <div class="kontakt-info">
+        <div class="kontakt-info__block">
+          <div class="kontakt-label">Adresse</div>
+          <address>
+            Die Rundlinge – Wohneigentümergemeinschaft<br />
+            Am Rundling 1–20<br />
+            12487 Berlin-Johannisthal
+          </address>
+        </div>
+        <div class="kontakt-info__block">
+          <div class="kontakt-label">E-Mail</div>
+          <a href="mailto:info@rundlinge.de">info@rundlinge.de</a>
+        </div>
+        <div class="kontakt-info__block">
+          <div class="kontakt-label">Andere Wohnprojekte</div>
+          <a href="https://www.cohousing-berlin.de/">CoHousing|Berlin</a>
+          <p>Hier findet ihr Informationen zu weiteren bestehenden und entstehenden Wohnprojekten in Berlin. CoHousing | Berlin dient als Vernetzter der Szene für kreative Selbstorganisation und nachhaltige Stadtentwicklung.</p>
+          <br>
+          <a href="https://sdg21.eu/">sdg21.eu</a>
+          <p>Die Webdatenbank sdg21 dokumentiert Siedlungen und Quartiere, die unter nachhaltigen Zielsetzungen in Deutschland und weiteren europäischen Ländern realisiert wurden.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .kontakt-main {
+    background: #fbfaf5;
+    padding: 96px 80px;
+  }
+  .kontakt-main__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .kontakt-intro {
+    font-size: clamp(20px, 2.5vw, 24px);
+    line-height: 1.5;
+    color: #1f221c;
+    font-weight: 500;
+    margin: 0 0 24px;
+    max-width: 48ch;
+  }
+  .kontakt-angebot {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #3d413a;
+    margin: 0 0 40px;
+    max-width: 52ch;
+  }
+  .kontakt-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #6da649;
+    text-decoration: none;
+    border-bottom: 2px solid #6da649;
+    padding-bottom: 4px;
+    transition: color 150ms, border-color 150ms, gap 150ms;
+  }
+  .kontakt-cta:hover {
+    color: #4f7e33;
+    border-color: #4f7e33;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .kontakt-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .kontakt-info__block {
+    border-top: 1px solid #e7e8e4;
+    padding-top: 20px;
+  }
+  .kontakt-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 12px;
+  }
+  address {
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3d413a;
+  }
+  .kontakt-info__block a {
+    font-size: 16px;
+    color: #6da649;
+  }
+  .kontakt-info__block p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #6b6f66;
+    margin: 0;
+    max-width: 44ch;
+  }
+  @media (max-width: 840px) {
+    .kontakt-main { padding: 64px 16px; }
+    .kontakt-main__inner { grid-template-columns: 1fr; gap: 48px; }
+  }
+</style>

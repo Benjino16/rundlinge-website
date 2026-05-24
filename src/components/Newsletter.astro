@@ -1,0 +1,129 @@
+---
+---
+
+<section class="newsletter">
+  <div class="newsletter__inner">
+    <div class="newsletter__text">
+      <div class="newsletter__eyebrow">Newsletter</div>
+      <h2 class="newsletter__title">Bleib am Rundling.</h2>
+      <p class="newsletter__lede">
+        Drei, vier Mal im Jahr ein Brief von uns — keine Werbung, kein Algorithmus.
+      </p>
+    </div>
+    <form class="newsletter__form" action="#" method="post" onsubmit="return false;">
+      <input
+        type="email"
+        name="email"
+        placeholder="deine@email.de"
+        required
+        aria-label="E-Mail-Adresse"
+      />
+      <button type="submit">Eintragen</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .newsletter {
+    background: #f4f2dc;
+    padding: 96px 80px;
+  }
+
+  .newsletter__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .newsletter__eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6da649;
+    margin-bottom: 16px;
+  }
+
+  .newsletter__title {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 600;
+    color: #1f221c;
+    margin: 0 0 16px;
+  }
+
+  .newsletter__lede {
+    font-size: 18px;
+    line-height: 1.55;
+    color: #3d413a;
+    margin: 0;
+    max-width: 46ch;
+  }
+
+  .newsletter__form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .newsletter__form input[type="email"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px 20px;
+    border: 1.5px solid #b6b9b3;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 16px;
+    color: #1f221c;
+    background: #fff;
+    outline: none;
+    transition: border-color 150ms;
+  }
+  .newsletter__form input[type="email"]:focus {
+    border-color: #6da649;
+  }
+  .newsletter__form input[type="email"]::placeholder {
+    color: #b6b9b3;
+  }
+
+  .newsletter__form button {
+    padding: 14px 28px;
+    background: #6da649;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 150ms, transform 150ms;
+    box-shadow: var(--shadow-pop);
+  }
+  .newsletter__form button:hover {
+    background: #4f7e33;
+    transform: translateY(-2px);
+  }
+  .newsletter__form button:active {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: 840px) {
+    .newsletter {
+      padding: 64px 16px;
+    }
+    .newsletter__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .newsletter__form {
+      flex-direction: column;
+    }
+    .newsletter__form input,
+    .newsletter__form button {
+      width: 100%;
+    }
+  }
+</style>

@@ -4,13 +4,15 @@ interface Props {
   label?: string;
 }
 const { images, label } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const resolvedImages = images.map(src => base + src.replace(/^\//, ''));
 ---
 
 {images.length > 0 && (
   <section class="collage">
     {label && <div class="collage__label">{label}</div>}
     <div class="collage__grid">
-      {images.map((src, i) => (
+      {resolvedImages.map((src, i) => (
         <div class="collage__cell">
           <img src={src} alt="" loading="lazy" />
         </div>

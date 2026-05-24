@@ -34,7 +34,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          GITHUB_PAGES: ${{ vars.GITHUB_PAGES }}
+          DEPLOY_TARGET: ${{ vars.DEPLOY_TARGET }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "astro dev --host",
     "build": "astro build",
-    "build:gh": "GITHUB_PAGES=true astro build",
+    "build:gh": "DEPLOY_TARGET=gh-pages astro build",
     "build:prod": "astro build",
     "preview": "astro preview",
     "astro": "astro"

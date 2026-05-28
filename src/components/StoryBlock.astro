@@ -6,13 +6,14 @@ interface Props {
   reverse?: boolean;
   eyebrow?: string;
   title?: string;
+  id?: string;
 }
-const { images, imagesAlt = [], accent = false, reverse = false, eyebrow, title } = Astro.props;
+const { images, imagesAlt = [], accent = false, reverse = false, eyebrow, title, id } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const resolvedImages = images.map(src => base + src.replace(/^\//, ''));
 ---
 
-<div class={`sb-wrap${accent ? ' sb-wrap--accent' : ''}`}>
+<div class={`sb-wrap${accent ? ' sb-wrap--accent' : ''}`} id={id}>
   <section class={`sb${reverse ? ' sb--reverse' : ''}`}>
     <div class="sb__gallery">
       {resolvedImages.map((src, i) => (

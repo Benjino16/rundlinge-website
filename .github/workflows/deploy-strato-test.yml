@@ -1,0 +1,36 @@
+name: Deploy to Strato (Test)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build & Deploy to Strato
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          protocol: sftp
+          server: ${{ secrets.STRATO_HOST }}
+          username: ${{ secrets.STRATO_USER }}
+          password: ${{ secrets.STRATO_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /rundlinge-website/
+          exclude: |
+            **/media/**

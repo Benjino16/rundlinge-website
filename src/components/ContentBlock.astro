@@ -9,9 +9,11 @@ interface Props {
   tint?: boolean;
   cta?: { text: string; href: string };
 }
+import { mediaUrl } from '../lib/media';
+
 const { eyebrow, title, body, image, imageAlt = '', reverse = false, tint = false, cta } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const resolvedImage = base + image.replace(/^\//, '');
+const resolvedImage = mediaUrl(image);
 const resolvedCta = cta ? { ...cta, href: base + cta.href.replace(/^\//, '') } : undefined;
 ---
 

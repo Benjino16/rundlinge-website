@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# media files (manuell per FTP in public/media/ hochladen)
+public/images/
+
 # macOS-specific files
 .DS_Store
 

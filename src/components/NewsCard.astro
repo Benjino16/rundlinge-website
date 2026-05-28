@@ -6,9 +6,11 @@ interface Props {
   image: string;
   href?: string;
 }
+import { mediaUrl } from '../lib/media';
+
 const { eyebrow, title, excerpt, image, href } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const resolvedImage = base + image.replace(/^\//, '');
+const resolvedImage = mediaUrl(image);
 const resolvedHref = href?.startsWith('/') ? base + href.slice(1) : href;
 ---
 

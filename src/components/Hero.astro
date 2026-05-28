@@ -1,11 +1,13 @@
 ---
+import { mediaUrl } from '../lib/media';
+
 interface Props {
   eyebrow?: string;
   title: string;
   image: string;
 }
 const { eyebrow, title, image } = Astro.props;
-const resolvedImage = import.meta.env.BASE_URL + image.replace(/^\//, '');
+const resolvedImage = mediaUrl(image);
 ---
 
 <section

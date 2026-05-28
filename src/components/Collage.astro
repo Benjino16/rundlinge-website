@@ -1,11 +1,12 @@
 ---
+import { mediaUrl } from '../lib/media';
+
 interface Props {
   images: string[];
   label?: string;
 }
 const { images, label } = Astro.props;
-const base = import.meta.env.BASE_URL;
-const resolvedImages = images.map(src => base + src.replace(/^\//, ''));
+const resolvedImages = images.map(mediaUrl);
 ---
 
 {images.length > 0 && (

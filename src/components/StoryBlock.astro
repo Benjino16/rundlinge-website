@@ -1,4 +1,6 @@
 ---
+import { mediaUrl } from '../lib/media';
+
 interface Props {
   images: string[];
   imagesAlt?: string[];
@@ -9,8 +11,7 @@ interface Props {
   id?: string;
 }
 const { images, imagesAlt = [], accent = false, reverse = false, eyebrow, title, id } = Astro.props;
-const base = import.meta.env.BASE_URL;
-const resolvedImages = images.map(src => base + src.replace(/^\//, ''));
+const resolvedImages = images.map(mediaUrl);
 ---
 
 <div class={`sb-wrap${accent ? ' sb-wrap--accent' : ''}`} id={id}>

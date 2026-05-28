@@ -24,13 +24,11 @@ jobs:
         run: npm run build
 
       - name: Deploy via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: appleboy/scp-action@v0.1.7
         with:
-          protocol: sftp
-          server: ${{ secrets.STRATO_HOST }}
+          host: ${{ secrets.STRATO_HOST }}
           username: ${{ secrets.STRATO_USER }}
           password: ${{ secrets.STRATO_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /rundlinge-website/
-          exclude: |
-            **/media/**
+          source: "dist/*"
+          target: /rundlinge-website/
+          strip_components: 1

@@ -23,12 +23,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy via SFTP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.STRATO_HOST }}
-          username: ${{ secrets.STRATO_USER }}
-          password: ${{ secrets.STRATO_PASSWORD }}
-          source: "dist/*"
-          target: /
-          strip_components: 1
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Deploy via rsync
+        run: |
+          sshpass -p "${{ secrets.STRATO_PASSWORD }}" rsync -avz \
+            -e "ssh -o StrictHostKeyChecking=no -p 22" \
+            dist/ \
+            ${{ secrets.STRATO_USER }}@${{ secrets.STRATO_HOST }}:/

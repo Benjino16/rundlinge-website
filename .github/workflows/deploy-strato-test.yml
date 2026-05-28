@@ -23,12 +23,14 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Install sshpass
-        run: sudo apt-get install -y sshpass
 
-      - name: Deploy via rsync
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      - name: Deploy via lftp
         run: |
-          sshpass -p "${{ secrets.STRATO_PASSWORD }}" rsync -avz \
-            -e "ssh -o StrictHostKeyChecking=no -p 22" \
-            dist/ \
-            ${{ secrets.STRATO_USER }}@${{ secrets.STRATO_HOST }}:/
+          lftp -u "${{ secrets.STRATO_USER }}","${{ secrets.STRATO_PASSWORD }}" \
+            sftp://${{ secrets.STRATO_HOST }} << EOF
+          mirror -R dist/ /
+          bye
+          EOF

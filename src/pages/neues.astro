@@ -1,7 +1,7 @@
 ---
 import Site from '../layouts/Site.astro';
 import Hero from '../components/Hero.astro';
-import NewsCard from '../components/NewsCard.astro';
+import ContentBlock from '../components/ContentBlock.astro';
 
 const saunaText = 'Wir haben es geschafft, den Platz in unserer Mitte um einen neuen Begegnungsort zu erweitern: unsere Sauna! Das Projekt umfasst zudem eine geplante offene Sommerküche, die als Ort für alltägliche Treffen und Feste dienen soll.';
 
@@ -22,80 +22,38 @@ const herzstueckText = 'Das 80-Quadratmeter-Gebäude ist das erste Strohballenha
     image="/images/neues-hero.jpg"
   />
 
-  <section class="page-intro">
-    <div class="page-intro__inner">
-      <p class="page-intro__text">
-        Nach 20 Jahren haben wir das Meiste schon geschafft, aber ab und an verwirklichen wir noch neue Begegnungsorte.
-      </p>
-    </div>
-  </section>
+  <ContentBlock
+    eyebrow="Energiekonzept · 2026"
+    title="Wärme, Strom, Wasser — neu gedacht"
+    body={energieText}
+    image="/images/herzstueck-bau.jpg"
+    cta={{ text: 'Mehr erfahren', href: '/oekologisch' }}
+  />
 
-  {/*TODO: Eventuell texte erweiterbar machen, mit einem Modal*/}
-  <section class="news-grid-section">
-    <div class="news-grid">
-      <NewsCard
-          eyebrow="Energiekonzept · 2026"
-          title="Wärme, Strom, Wasser — neu gedacht"
-          excerpt={energieText}
-          image="/images/herzstueck-bau.jpg"
-          href="/oekologisch"
-      />
-      <NewsCard
-        eyebrow="Bau der Sauna · 2023"
-        title="Sauna und (Sommerküche)"
-        excerpt={saunaText}
-        image="/images/sauna-sommerkueche.jpg"
-        href="/gemeinsam"
-      />
-      <NewsCard
-        eyebrow="Insektenfreundlich · 2017"
-        title="Es leuchtet und summt"
-        excerpt={leuchtetText}
-        image="/images/bienen.jpg"
-      />
-      <NewsCard
-        eyebrow="Gemeinschaftshaus · 2009"
-        title="Unser Herzstück"
-        excerpt={herzstueckText}
-        image="/images/herzstueck.jpg"
-        href="/gemeinsam#herzstueck"
-      />
-    </div>
-  </section>
+  <ContentBlock
+    eyebrow="Bau der Sauna · 2023"
+    title="Sauna und (Sommerküche)"
+    body={saunaText}
+    image="/images/sauna-sommerkueche.jpg"
+    cta={{ text: 'Mehr erfahren', href: '/gemeinsam' }}
+    reverse={true}
+    tint={true}
+  />
+
+  <ContentBlock
+    eyebrow="Insektenfreundlich · 2017"
+    title="Es leuchtet und summt"
+    body={leuchtetText}
+    image="/images/bienen.jpg"
+  />
+
+  <ContentBlock
+    eyebrow="Gemeinschaftshaus · 2009"
+    title="Unser Herzstück"
+    body={herzstueckText}
+    image="/images/herzstueck.jpg"
+    cta={{ text: 'Mehr erfahren', href: '/gemeinsam#herzstueck' }}
+    reverse={true}
+    tint={true}
+  />
 </Site>
-
-<style>
-  .page-intro {
-    background: #f4f2dc;
-    padding: 64px 80px;
-  }
-  .page-intro__inner {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  .page-intro__text {
-    font-size: clamp(20px, 2.5vw, 26px);
-    line-height: 1.55;
-    color: #3d413a;
-    max-width: 64ch;
-    margin: 0;
-  }
-
-  .news-grid-section {
-    background: #fbfaf5;
-    padding: 80px;
-  }
-  .news-grid {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-
-  @media (max-width: 840px) {
-    .page-intro { padding: 48px 16px; }
-    .news-grid-section { padding: 48px 16px; }
-    .news-grid { grid-template-columns: 1fr; }
-  }
-</style>

@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    name: Build & Deploy to Strato
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,6 +24,23 @@ jobs:
         run: npm run build
         env:
           PUBLIC_MEDIA_URL: ${{ vars.PUBLIC_MEDIA_URL }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  deploy:
+    name: Deploy to Strato
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
 
       - name: Install lftp
         run: sudo apt-get install -y lftp
